@@ -29,7 +29,7 @@ export default function Index({auth, feedbacks}) {
                                 {
                                     feedbacks.total !== 0 ? feedbacks.data.map((feedback, index) => (
                                         <tr key={index}>
-                                            <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
+                                            <td className="border-b border-[#eee] py-5 px-4 pl-9 xl:pl-11">
                                                 <div className="flex flex-row items-center gap-3">
                                                     <div className="w-10 h-10 rounded-full overflow-hidden">
                                                         <span className="w-10 h-10 font-bold rounded-full bg-purple-500 text-white flex items-center justify-center text-sm font-medium">
@@ -41,10 +41,10 @@ export default function Index({auth, feedbacks}) {
                                                     <h5 className="font-medium text-black">{feedback?.user?.name}</h5>
                                                 </div>
                                             </td>
-                                            <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
+                                            <td className="border-b border-[#eee] py-5 px-4 pl-9 xl:pl-11">
                                                 <h5 className="font-medium text-black">{feedback?.content}</h5>
                                             </td>
-                                            <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                                            <td className="border-b border-[#eee] py-5 px-4">
                                                 <h5 className="font-medium text-sm text-black">{
                                                     new Date(feedback?.created_at).toLocaleDateString('en-GB', {
                                                         day: 'numeric',
@@ -53,7 +53,7 @@ export default function Index({auth, feedbacks}) {
                                                     })
                                                 }</h5>
                                             </td>
-                                            <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                                            <td className="border-b border-[#eee] py-5 px-4">
                                                 <div className="flex flex-row items-center justify-between">
                                                     {[1, 2, 3, 4, 5].map((starValue) => (
                                                         <span
@@ -70,7 +70,7 @@ export default function Index({auth, feedbacks}) {
                                         </tr>
                                     )) : (
                                         <tr>
-                                            <td className="py-5 px-4 pl-9 dark:border-strokedark xl:pl-11 text-center" colSpan="2">
+                                            <td className="py-5 px-4 pl-9 xl:pl-11 text-center" colSpan="2">
                                                 <h5 className="font-medium text-black">No feedbacks Yet</h5>
                                             </td>
                                         </tr>
