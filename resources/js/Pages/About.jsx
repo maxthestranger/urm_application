@@ -1,43 +1,43 @@
-import {Head, Link} from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
 import Header from "@/Components/Header.jsx";
 import Footer from "@/Components/Footer.jsx";
 
-export default function Welcome({ auth }) {
+export default function About({ auth }) {
     return (
         <>
-            <Head title="Home" />
+            <Head title="About Us" />
             <Header auth={auth} />
 
             <main>
                 <section className="bg-primary py-20">
                     <div className="container mx-auto text-center px-4 sm:px-6 lg:px-8">
-                        <h1 className="text-xs text-gray sm:text-sm md:text-base">This is a URM Application</h1>
-                        <h2 className="text-graydark text-2xl font-bold sm:text-3xl md:text-4xl lg:text-5xl mt-5 px-4 sm:px-8 lg:px-24">Providing academia a list of potential underrepresented minority (URM) candidates for PhD studies, postdoc, and faculty positions</h2>
-                        <Link href={route('register')} className="inline-flex border border-transparent bg-accent-dark font-bold text-white px-6 py-2 mt-20 hover:bg-accent rounded-full transition duration-300 ease-in-out">Get Started</Link>
+                        <h1 className="text-xs text-gray sm:text-sm md:text-base">About Us</h1>
+                        <h2 className="text-graydark text-2xl font-bold sm:text-3xl md:text-4xl lg:text-5xl mt-5 px-4 sm:px-8 lg:px-24">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h2>
                     </div>
                 </section>
 
                 <section className="bg-gray-100 py-20">
                     <div className="container mx-auto flex flex-wrap">
-                        <div className="w-full lg:w-1/2">
-                            <img src="/storage/images/student.jpg" alt="About Us" className="rounded-lg shadow-lg" />
-                        </div>
                         <div className="w-full lg:w-1/2 px-6 lg:pl-12 py-8">
-                            <h2 className="text-3xl font-bold mb-4">About Our Platform</h2>
-                            <p className="mb-3">We are dedicated to connecting academic professionals, institutions, and recruiters.
-                                Whether you're looking for a job, recruiting top talent, or striving for diversity
-                                and equity, our platform has something for you.</p>
+                            <h2 className="text-3xl font-bold mb-4">WHO WE ARE</h2>
+                            <p className="mb-3">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                                It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                            </p>
                             <p>
                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
                                 It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                             </p>
+                        </div>
+                        <div className="w-full lg:w-1/2">
+                            <img src="/storage/images/about.jpg" alt="About Us" className="rounded-lg shadow-lg" />
                         </div>
                     </div>
                 </section>
 
                 <section className="py-20">
                     <div className="container mx-auto text-center">
-                        <h2 className="text-3xl font-bold mb-10">What People Are Saying</h2>
+                        <h2 className="text-3xl font-bold mb-10">Testimonials</h2>
                         <div className="flex flex-wrap justify-center">
                             <div className="w-full md:w-1/3 px-4 mb-8">
                                 <img src="/storage/images/avatar.png" alt="Testimonial 1"
