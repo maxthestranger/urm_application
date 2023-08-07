@@ -5,7 +5,6 @@ import PrimaryButton from "@/Components/PrimaryButton.jsx";
 import InputError from "@/Components/InputError.jsx";
 
 export default function MyFeedbacks({auth, feedbacks}) {
-    console.log(feedbacks);
     const [showModal, setShowModal] = useState(false);
     const [rating, setRating] = useState(1);
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -16,6 +15,11 @@ export default function MyFeedbacks({auth, feedbacks}) {
 
     const handleStarClick = (starValue) => {
         setRating(starValue);
+
+        setData({
+            ...data,
+            rating: starValue,
+        });
     };
 
     const submit = (e) => {

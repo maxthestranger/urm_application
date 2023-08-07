@@ -1,43 +1,14 @@
 import DashboardLayout from '@/Layouts/DashboardLayout';
 import { Head } from '@inertiajs/react';
 
-export default function Dashboard({ auth }) {
+export default function Index({ auth }) {
     return (
         <DashboardLayout
             user={auth.user}
         >
-            <Head title="Dashboard" />
+            <Head title="Jobs" />
 
             <div className="py-12">
-                <div
-                    className="col-span-12 bg-white overflow-hidden shadow-sm sm:rounded-lg p-7.5">
-                    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4 xl:gap-0">
-                        <div
-                            className="flex items-center justify-center gap-2 border-b border-stroke pb-5 xl:border-b-0 xl:border-r xl:pb-0">
-                            <div><h4
-                                className="mb-0.5 text-xl font-semibold text-black md:text-title-lg">4,350</h4>
-                                <p className="text-sm font-medium">All Users</p></div>
-                        </div>
-                        <div
-                            className="flex items-center justify-center gap-2 border-b border-stroke pb-5 xl:border-b-0 xl:border-r xl:pb-0">
-                            <div><h4
-                                className="mb-0.5 text-xl font-semibold text-black md:text-title-lg">55.9K</h4>
-                                <p className="text-sm font-medium">Active Jobs</p></div>
-                        </div>
-                        <div
-                            className="flex items-center justify-center gap-2 border-b border-stroke pb-5 sm:border-b-0 sm:pb-0 xl:border-r">
-                            <div><h4
-                                className="mb-0.5 text-xl font-semibold text-black md:text-title-lg">54%</h4>
-                                <p className="text-sm font-medium">Applications</p></div>
-                        </div>
-                        <div className="flex items-center justify-center gap-2">
-                            <div><h4
-                                className="mb-0.5 text-xl font-semibold text-black md:text-title-lg">2m
-                                56s</h4><p className="text-sm font-medium">Successful Matches</p></div>
-                        </div>
-                    </div>
-                </div>
-
                 <div
                     className="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-8">
                     <div className="p-4 md:p-6 xl:p-7.5">

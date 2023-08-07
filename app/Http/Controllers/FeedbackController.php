@@ -11,14 +11,14 @@ use Inertia\Response;
 
 class FeedbackController extends Controller
 {
-    public function index()
+    public function index(): Response
     {
         return Inertia::render('Feedback/Index', [
             'feedbacks' => Feedback::with('user')->latest()->paginate(),
         ]);
     }
 
-    public function create()
+    public function create(): Response
     {
         return Inertia::render('Feedback/Create');
     }
@@ -32,7 +32,7 @@ class FeedbackController extends Controller
 
         $request->user()->feedbacks()->create($request->only('content', 'rating'));
 
-        return Redirect::route('feedback.index')->with('status', 'Feedback created successfully.');
+        return Redirect::route('feedback.my-feedback')->with('status', 'Feedback created successfully.');
     }
 
     public function myFeedbacks(): Response

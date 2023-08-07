@@ -11,6 +11,19 @@ class JobPost extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'title',
+        'description',
+        'salary',
+        'location',
+        'type',
+        'is_approved',
+        'status',
+        'benefits',
+        'requirements',
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

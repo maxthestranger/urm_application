@@ -8,7 +8,7 @@ export default function Authenticated({ user, children }) {
 
     return (
         <div className="flex h-screen overflow-hidden">
-            <Sidebar showingNavigationDropdown={showingNavigationDropdown} setShowingNavigationDropdown={setShowingNavigationDropdown} />
+            <Sidebar user={user} showingNavigationDropdown={showingNavigationDropdown} setShowingNavigationDropdown={setShowingNavigationDropdown} />
 
             <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
                 <header className="sticky top-0 z-999 flex w-full bg-white drop-shadow-1">

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\JobPostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -56,8 +57,14 @@ Route::get('/contact/success', function () {
     return Inertia::render('ContactSuccess');
 })->name('contact.success');
 
+// jobs
+Route::get('/jobs', [JobPostController::class, 'index'])->middleware(['auth', 'verified'])->name('job.index');
+Route::get('/jobs/create', [JobPostController::class, 'create'])->middleware(['auth', 'verified'])->name('job.create');
+Route::post('/jobs', [JobPostController::class, 'store'])->middleware(['auth', 'verified'])->name('job.store');
+Route::get('/my-jobs', [JobPostController::class, 'myJobPosts'])->middleware(['auth', 'verified'])->name('job.my-job');
+
 // feedbacks
-Route::get('/feedbacks', [FeedbackController::class, 'index'])->middleware(['auth', 'verified', 'role:admin'])->name('feedback.index');
+Route::get('/feedbacks', [FeedbackController::class, 'index'])->middleware(['auth', 'verified'])->name('feedback.index');
 Route::get('/feedbacks/create', [FeedbackController::class, 'create'])->middleware(['auth', 'verified'])->name('feedback.create');
 Route::post('/feedbacks', [FeedbackController::class, 'store'])->middleware(['auth', 'verified'])->name('feedback.store');
 Route::get('/my-feedbacks', [FeedbackController::class, 'myFeedbacks'])->middleware(['auth', 'verified'])->name('feedback.my-feedback');
