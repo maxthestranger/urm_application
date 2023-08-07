@@ -5,6 +5,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\JobPostController;
 use App\Http\Controllers\ProfileController;
+use App\Models\JobPost;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -24,13 +25,16 @@ Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
     ]);
 });
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    return Inertia::render('Dashboard', [
+        'jobs' => JobPost::with('user')->where('is_approved', false)->latest()->take(10)->get(),
+        'jobCountAll' => JobPost::count(),
+        'jobCountApproved' => JobPost::where('is_approved', true)->count(),
+        'jobCountPending' => JobPost::where('is_approved', false)->count(),
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 // about

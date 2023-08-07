@@ -46,4 +46,11 @@ class JobPostController extends Controller
             'jobPosts' => JobPost::with('user')->where('user_id', auth()->user()->id)->latest()->paginate(),
         ]);
     }
+
+    public function show(JobPost $jobPost): Response
+    {
+        return Inertia::render('JobPost/Show', [
+            'jobPost' => $jobPost->load('user'),
+        ]);
+    }
 }
