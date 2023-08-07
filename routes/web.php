@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\JobPostController;
@@ -62,12 +63,20 @@ Route::get('/jobs', [JobPostController::class, 'index'])->middleware(['auth', 'v
 Route::get('/jobs/create', [JobPostController::class, 'create'])->middleware(['auth', 'verified'])->name('job.create');
 Route::post('/jobs', [JobPostController::class, 'store'])->middleware(['auth', 'verified'])->name('job.store');
 Route::get('/my-jobs', [JobPostController::class, 'myJobPosts'])->middleware(['auth', 'verified'])->name('job.my-job');
+Route::get('/jobs/{jobPost}', [JobPostController::class, 'show'])->middleware(['auth', 'verified'])->name('job.show');
 
 // feedbacks
 Route::get('/feedbacks', [FeedbackController::class, 'index'])->middleware(['auth', 'verified'])->name('feedback.index');
 Route::get('/feedbacks/create', [FeedbackController::class, 'create'])->middleware(['auth', 'verified'])->name('feedback.create');
 Route::post('/feedbacks', [FeedbackController::class, 'store'])->middleware(['auth', 'verified'])->name('feedback.store');
 Route::get('/my-feedbacks', [FeedbackController::class, 'myFeedbacks'])->middleware(['auth', 'verified'])->name('feedback.my-feedback');
+
+// applications
+Route::get('/applications', [ApplicationController::class, 'index'])->middleware(['auth', 'verified'])->name('application.index');
+Route::get('/my-applications', [ApplicationController::class, 'myApplications'])->middleware(['auth', 'verified'])->name('application.my-application');
+Route::post('/applications', [ApplicationController::class, 'apply'])->middleware(['auth', 'verified'])->name('application.apply');
+Route::post('/applications/approve', [ApplicationController::class, 'approve'])->middleware(['auth', 'verified'])->name('application.approve');
+Route::post('/applications/reject', [ApplicationController::class, 'reject'])->middleware(['auth', 'verified'])->name('application.reject');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

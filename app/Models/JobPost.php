@@ -18,8 +18,6 @@ class JobPost extends Model
         'salary',
         'location',
         'type',
-        'is_approved',
-        'status',
         'benefits',
         'requirements',
     ];

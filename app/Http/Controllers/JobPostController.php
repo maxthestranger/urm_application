@@ -31,12 +31,11 @@ class JobPostController extends Controller
             'location' => ['required'],
             'salary' => ['required'],
             'type' => ['required'],
-            'is_approved' => ['required'],
             'benefits' => ['required', 'min:10'],
             'requirements' => ['required', 'min:10'],
         ]);
 
-        $request->user()->jobPosts()->create($request->only('title', 'description', 'location', 'salary', 'type', 'is_approved', 'benefits', 'requirements'));
+        $request->user()->jobPosts()->create($request->only('title', 'description', 'location', 'salary', 'type', 'benefits', 'requirements'));
 
         return Redirect::route('job.my-job')->with('status', 'JobPost created successfully.');
     }
