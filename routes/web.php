@@ -94,4 +94,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::patch('/candidate', [ProfileController::class, 'updateCandidateProfile'])->middleware(['auth', 'verified'])->name('candidate.update');
+
 require __DIR__.'/auth.php';

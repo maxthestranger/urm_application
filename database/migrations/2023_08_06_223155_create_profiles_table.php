@@ -23,9 +23,9 @@ return new class extends Migration
             $table->text('institution_details')->nullable();
             $table->text('work_experience')->nullable();
             $table->text('skills')->nullable();
-            $table->text('languages')->nullable();
-            $table->text('hobbies')->nullable();
-            $table->text('references')->nullable();
+            $table->text('education')->nullable();
+            $table->text('salary_expectation')->nullable();
+            $table->text('availability')->nullable();
 
             $table->timestamps();
 

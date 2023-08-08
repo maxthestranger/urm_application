@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Profile;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -21,6 +22,7 @@ class ProfileController extends Controller
         return Inertia::render('Profile/Edit', [
             'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
             'status' => session('status'),
+            'candidate' => $request->user()->profile,
         ]);
     }
 
@@ -60,4 +62,46 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    public function updateCandidateProfile(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'user_id' => ['required'],
+            'phone' => ['required'],
+            'address' => ['required'],
+            'bio' => ['required'],
+            'resume' => ['required'],
+            'position_preference' => ['required'],
+            'salary_expectation' => ['required'],
+            'availability' => ['required'],
+            'work_experience' => ['required'],
+            'skills' => ['required'],
+            'education' => ['required'],
+        ]);
+
+        $user = $request->user();
+
+        $profile = $user->profile;
+
+        if($profile == null){
+            $profile = new Profile();
+        }
+
+        $profile->user_id = $request->user_id;
+        $profile->phone = $request->phone;
+        $profile->address = $request->address;
+        $profile->bio = $request->bio;
+        $profile->resume = $request->resume;
+        $profile->position_preference = $request->position_preference;
+        $profile->salary_expectation = $request->salary_expectation;
+        $profile->availability = $request->availability;
+        $profile->work_experience = $request->work_experience;
+        $profile->skills = $request->skills;
+        $profile->education = $request->education;
+
+        $profile->save();
+
+        return Redirect::route('profile.edit');
+    }
+
 }
