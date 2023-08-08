@@ -34,7 +34,7 @@ class ApplicationController extends Controller
         $application = Application::where('user_id', auth()->user()->id)->where('job_post_id', $request->job_post_id)->first();
 
         if ($application) {
-            return Redirect::route('job.index')->with('status', 'You have already applied for this job.');
+            return Redirect::route('job.available-positions')->with('status', 'You have already applied for this job.');
         }
 
         Application::create([
@@ -43,7 +43,7 @@ class ApplicationController extends Controller
             'status' => 'pending',
         ]);
 
-        return Redirect::route('job.index')->with('status', 'Application submitted successfully.');
+        return Redirect::route('application.my-application')->with('status', 'Application submitted successfully.');
     }
 
     public function approve(Request $request): RedirectResponse

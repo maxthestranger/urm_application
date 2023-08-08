@@ -1,19 +1,20 @@
 import DashboardLayout from '@/Layouts/DashboardLayout';
 import {Head, Link, useForm} from '@inertiajs/react';
 
-export default function Index({ auth, jobPosts }) {
+export default function AvailableJobs({ auth, jobPosts }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         job_post_id: '',
     });
 
-    const submit = (id) => {
-        setData('job_post_id', id);
+    const submit = (e) => {
+        e.preventDefault();
 
-        post(route('application.apply'), {
-            onSuccess: () => {
-                reset();
-            },
+        setData({
+            ...data,
+            job_post_id: e.target.job_post_id.value,
         });
+
+        post(route('application.apply'));
     }
     return (
         <DashboardLayout
@@ -27,7 +28,7 @@ export default function Index({ auth, jobPosts }) {
                     <div className="p-4 md:p-6 xl:p-7.5">
                         <div className="flex items-start justify-between">
                             <div>
-                                <h2 className="text-title-sm2 font-bold text-black">Recommended Job Posts</h2>
+                                <h2 className="text-title-sm2 font-bold text-black">Available Job Positions</h2>
                             </div>
                         </div>
                     </div>
@@ -97,8 +98,9 @@ export default function Index({ auth, jobPosts }) {
                                         </div>
                                         <div className="w-2/12 text-center md:w-1/12">
 
-                                            <div className="flex items-center justify-center">
-                                                <button className="mx-auto flex items-center justify-between gap-2 text-sm font-medium text-white bg-primary hover:bg-opacity-90 py-2 px-4 rounded" onClick={() => submit(jobPost.id)}>
+                                            <form className="flex items-center justify-center" onSubmit={(submit)}>
+                                                <input type="hidden" name="job_post_id" value={jobPost.id} />
+                                                <button className="mx-auto flex items-center justify-between gap-2 text-sm font-medium text-white bg-primary hover:bg-opacity-90 py-2 px-4 rounded" type="submit">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                          fill="currentColor" className="bi bi-send-check"
                                                          viewBox="0 0 16 16">
@@ -109,7 +111,7 @@ export default function Index({ auth, jobPosts }) {
                                                     </svg>
                                                     Apply
                                                 </button>
-                                            </div>
+                                            </form>
                                         </div>
                                     </div>
                                 )) : (

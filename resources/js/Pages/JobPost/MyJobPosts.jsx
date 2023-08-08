@@ -1,6 +1,6 @@
 import DashboardLayout from '@/Layouts/DashboardLayout';
 import { useState } from "react";
-import {Head, useForm} from '@inertiajs/react';
+import {Head, Link, useForm} from '@inertiajs/react';
 import PrimaryButton from "@/Components/PrimaryButton.jsx";
 import InputError from "@/Components/InputError.jsx";
 import TextInput from "@/Components/TextInput.jsx";
@@ -8,7 +8,7 @@ import InputLabel from "@/Components/InputLabel.jsx";
 
 export default function Index({ auth, jobPosts }) {
     const [showModal, setShowModal] = useState(false);
-    const { data, setData, post, processing, errors, reset } = useForm({
+    const { data, setData, post, processing, errors, delete: destroy } = useForm({
         title: '',
         description: '',
         location: '',
@@ -21,7 +21,13 @@ export default function Index({ auth, jobPosts }) {
     const submit = (e) => {
         e.preventDefault();
 
+        setShowModal(false);
+
         post(route('job.store'));
+    }
+
+    const handleDelete = (id) => {
+        destroy(route('job.destroy', id));
     }
     return (
         <DashboardLayout
@@ -118,7 +124,7 @@ export default function Index({ auth, jobPosts }) {
                                         <div className="w-2/12 text-center md:w-1/12">
 
                                             <div className="flex items-center justify-center gap-2">
-                                                <button className="mx-auto block p-4 rounded-full hover:text-blue-500 hover:bg-gray">
+                                                <Link className="mx-auto block p-4 rounded-full hover:text-blue-500 hover:bg-gray" href={route('job.edit', jobPost.id)}>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                          fill="currentColor" className="bi bi-pencil-square" viewBox="0 0 16 16">
                                                         <path
@@ -126,9 +132,9 @@ export default function Index({ auth, jobPosts }) {
                                                         <path fillRule="evenodd"
                                                               d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                                                     </svg>
-                                                </button>
+                                                </Link>
 
-                                                <button className="mx-auto block p-4 rounded-full hover:text-meta-1 hover:bg-gray">
+                                                <button className="mx-auto block p-4 rounded-full hover:text-meta-1 hover:bg-gray" type="button" onClick={() => handleDelete(jobPost.id)}>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                          fill="currentColor" className="bi bi-trash3" viewBox="0 0 16 16">
                                                         <path
@@ -163,7 +169,7 @@ export default function Index({ auth, jobPosts }) {
                                 d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
                         </svg>
                     </button>
-                    <form onSubmit={submit}>
+                    <form onSubmit={submit} className="max-h-[calc(100vh-200px)] overflow-y-auto"> {/* Added these classes here */}
                         <div className="p-6.5">
                             <div className="mb-4.5">
                                 <InputLabel htmlFor="title" value="Title" />
@@ -192,6 +198,7 @@ export default function Index({ auth, jobPosts }) {
                             <div className="mb-4.5">
                                 <InputLabel htmlFor="type" value="Job Type" />
                                 <select id="type" name="type" value={data.type} onChange={(e) => setData('type', e.target.value)} className="w-full border border-gray rounded p-3 focus:outline-none focus:border-primary transition-colors duration-200">
+                                    <option value="">Select a job type</option>
                                     <option value="full-time">Full Time</option>
                                     <option value="part-time">Part Time</option>
                                     <option value="contract">Contract</option>
@@ -220,6 +227,7 @@ export default function Index({ auth, jobPosts }) {
                     </form>
                 </div>
             </div>
+
         </DashboardLayout>
     );
 }

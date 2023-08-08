@@ -34,6 +34,7 @@ Route::get('/dashboard', function () {
         'jobCountAll' => JobPost::count(),
         'jobCountApproved' => JobPost::where('is_approved', true)->count(),
         'jobCountPending' => JobPost::where('is_approved', false)->count(),
+        'myJobs' => JobPost::with('user')->where('user_id', auth()->user()->id)->latest()->take(10)->get(),
     ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -68,6 +69,10 @@ Route::get('/jobs/create', [JobPostController::class, 'create'])->middleware(['a
 Route::post('/jobs', [JobPostController::class, 'store'])->middleware(['auth', 'verified'])->name('job.store');
 Route::get('/my-jobs', [JobPostController::class, 'myJobPosts'])->middleware(['auth', 'verified'])->name('job.my-job');
 Route::get('/jobs/{jobPost}', [JobPostController::class, 'show'])->middleware(['auth', 'verified'])->name('job.show');
+Route::get('/jobs/{jobPost}/edit', [JobPostController::class, 'edit'])->middleware(['auth', 'verified'])->name('job.edit');
+Route::patch('/jobs/{jobPost}', [JobPostController::class, 'update'])->middleware(['auth', 'verified'])->name('job.update');
+Route::delete('/jobs/{jobPost}', [JobPostController::class, 'destroy'])->middleware(['auth', 'verified'])->name('job.destroy');
+Route::get('/available-positions', [JobPostController::class, 'getAvailableJobs'])->middleware(['auth', 'verified'])->name('job.available-positions');
 
 // feedbacks
 Route::get('/feedbacks', [FeedbackController::class, 'index'])->middleware(['auth', 'verified'])->name('feedback.index');
@@ -81,6 +86,7 @@ Route::get('/my-applications', [ApplicationController::class, 'myApplications'])
 Route::post('/applications', [ApplicationController::class, 'apply'])->middleware(['auth', 'verified'])->name('application.apply');
 Route::post('/applications/approve', [ApplicationController::class, 'approve'])->middleware(['auth', 'verified'])->name('application.approve');
 Route::post('/applications/reject', [ApplicationController::class, 'reject'])->middleware(['auth', 'verified'])->name('application.reject');
+Route::delete('/applications/{application}', [ApplicationController::class, 'destroy'])->middleware(['auth', 'verified'])->name('application.destroy');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

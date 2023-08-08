@@ -197,7 +197,7 @@ export default function Sidebar({user, showingNavigationDropdown, setShowingNavi
                                         </li>
 
                                         <li>
-                                            <Link href={route('job.my-job')} className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 cursor-pointer font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 false ${route().current('job.my-job') ? 'bg-graydark dark:bg-meta-4' : ''}`}>
+                                            <Link href={route('job.index')} className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 cursor-pointer font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 false ${route().current('job.index') ? 'bg-graydark dark:bg-meta-4' : ''}`}>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                      fill="currentColor" className="bi bi-file-earmark-person"
                                                      viewBox="0 0 16 16">
@@ -210,7 +210,7 @@ export default function Sidebar({user, showingNavigationDropdown, setShowingNavi
                                         </li>
 
                                         <li>
-                                            <Link href={route('job.my-job')} className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 cursor-pointer font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 false ${route().current('job.my-job') ? 'bg-graydark dark:bg-meta-4' : ''}`}>
+                                            <Link href={route('job.index')} className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 cursor-pointer font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 false ${route().current('job.index') ? 'bg-graydark dark:bg-meta-4' : ''}`}>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                      fill="currentColor" className="bi bi-journal-bookmark"
                                                      viewBox="0 0 16 16">
@@ -259,7 +259,7 @@ export default function Sidebar({user, showingNavigationDropdown, setShowingNavi
                                 role === 'candidate' && (
                                     <>
                                         <li>
-                                            <Link href={route('job.index')} className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 cursor-pointer font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 false ${route().current('job.index') ? 'bg-graydark dark:bg-meta-4' : ''}`}>
+                                            <Link href={route('job.available-positions')} className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 cursor-pointer font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 false ${route().current('job.available-positions') ? 'bg-graydark dark:bg-meta-4' : ''}`}>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                      fill="currentColor" className="bi bi-file-earmark-person"
                                                      viewBox="0 0 16 16">
@@ -272,7 +272,7 @@ export default function Sidebar({user, showingNavigationDropdown, setShowingNavi
                                         </li>
 
                                         <li>
-                                            <Link href={route('application.index')} className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 cursor-pointer font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 false ${route().current('application.index') ? 'bg-graydark dark:bg-meta-4' : ''}`}>
+                                            <Link href={route('application.my-application')} className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 cursor-pointer font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 false ${route().current('application.my-application') ? 'bg-graydark dark:bg-meta-4' : ''}`}>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                      fill="currentColor" className="bi bi-send-check" viewBox="0 0 16 16">
                                                     <path

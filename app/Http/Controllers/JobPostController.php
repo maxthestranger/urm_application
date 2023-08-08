@@ -53,4 +53,46 @@ class JobPostController extends Controller
             'jobPost' => $jobPost->load('user'),
         ]);
     }
+
+    public function edit(JobPost $jobPost): Response
+    {
+        return Inertia::render('JobPost/Edit', [
+            'jobPost' => $jobPost->load('user'),
+        ]);
+    }
+
+    public function update(Request $request, JobPost $jobPost): RedirectResponse
+    {
+        $request->validate([
+            'title' => ['required'],
+            'description' => ['required', 'min:10'],
+            'location' => ['required'],
+            'salary' => ['required'],
+            'type' => ['required'],
+            'benefits' => ['required', 'min:10'],
+            'requirements' => ['required', 'min:10'],
+        ]);
+
+        $jobPost->update($request->only('title', 'description', 'location', 'salary', 'type', 'benefits', 'requirements'));
+
+        return Redirect::route('job.my-job')->with('status', 'JobPost updated successfully.');
+    }
+
+    public function destroy(JobPost $jobPost): RedirectResponse
+    {
+        $jobPost->delete();
+
+        return Redirect::route('job.my-job')->with('status', 'JobPost deleted successfully.');
+    }
+
+    public function getAvailableJobs(): Response
+    {
+        $jobPosts = JobPost::with('user')->whereDoesntHave('applications', function ($query) {
+            $query->where('user_id', auth()->user()->id);
+        })->latest()->paginate();
+
+        return Inertia::render('JobPost/AvailableJobs', [
+            'jobPosts' => $jobPosts,
+        ]);
+    }
 }

@@ -6,7 +6,7 @@ import CandidateDashboard from "@/Components/CandidateDashboard.jsx";
 import RecruiterDashboard from "@/Components/RecruiterDashboard.jsx";
 import DeiDashboard from "@/Components/DeiDashboard.jsx";
 
-export default function Dashboard({ auth, jobs, jobCountAll, jobCountApproved, jobCountPending }) {
+export default function Dashboard({ auth, jobs, jobCountAll, jobCountApproved, jobCountPending, myJobs }) {
     const role = auth?.user?.role;
     return (
         <DashboardLayout
@@ -19,9 +19,9 @@ export default function Dashboard({ auth, jobs, jobCountAll, jobCountApproved, j
                     role === 'admin' ? (
                         <AdminDashboard />
                     ) : role === 'academia' ? (
-                        <AcademiaDashboard />
+                        <AcademiaDashboard myJobs={myJobs} jobCountAll={jobCountAll} jobCountApproved={jobCountApproved} jobCountPending={jobCountPending} />
                     ) : role === 'candidate' ? (
-                        <CandidateDashboard />
+                        <CandidateDashboard jobs={jobs} jobCountAll={jobCountAll} />
                     ) : role === 'recruiter' ? (
                         <RecruiterDashboard />
                     ) : (
